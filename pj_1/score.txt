@@ -1,0 +1,27 @@
+downsampling
+analogy_scores: 0.90713536201469047
+similarity_scores: (PearsonRResult(statistic=0.40544563741798584, pvalue=7.082235128781077e-22), SignificanceResult(statistic=0.44464573465579194, pvalue=1.8189500679898927e-26), 3.7243947858473)
+
+bigger_window
+analogy_scores: 0.885099685204617
+similarity_scores: (PearsonRResult(statistic=0.4192044028992752, pvalue=2.0282580055611441e-23), SignificanceResult(statistic=0.4549766571598661, pvalue=8.850982592087141e-28), 3.7243947858473)
+
+hierachy_softmax
+analogy_scores: 0.89979013641133265
+similarity_scores: (PearsonRResult(statistic=0.39302483886413664, pvalue=1.5234947952985254e-20), SignificanceResult(statistic=0.43092524389917075, pvalue=8.615457522762589e-25), 3.7243947858473)
+
+more_epochs
+analogy_scores: 0.87355718782791186
+similarity_scores: (PearsonRResult(statistic=0.4030569477081523, pvalue=1.2907514194999743e-21), SignificanceResult(statistic=0.4409133544085261, pvalue=5.286666457321652e-26), 3.7243947858473)
+
+normal
+analogy_scores: 0.88719832109129065
+similarity_scores: (PearsonRResult(statistic=0.3987517522278269, pvalue=3.761517666726981e-21), SignificanceResult(statistic=0.4350214789589578, pvalue=2.773637655946773e-25), 3.7243947858473)
+
+shorter_vector
+analogy_scores: 0.77177334732423925
+similarity_scores: (PearsonRResult(statistic=0.3922161846061319, pvalue=1.8521101132986855e-20), SignificanceResult(statistic=0.4269671973617162, pvalue=2.538403545370138e-24), 3.7243947858473)
+
+skip_gram
+analogy_scores: 0.9374396642182581
+similarity_scores: (PearsonRResult(statistic=0.41207259377472727, pvalue=1.3057954246074458e-22), SignificanceResult(statistic=0.4512767980885429, pvalue=2.64440716490188e-27), 3.7243947858473)
