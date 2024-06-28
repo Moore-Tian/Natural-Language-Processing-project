@@ -12,7 +12,7 @@ def batch_iter(data, batch_size=32, shuffle=True):
         random.shuffle(indices)
     batch_num = (data_size + batch_size - 1) // batch_size
     for i in range(batch_num):
-        batch = [data[idx] for idx in indices[i * batch_size: (i + 1) * batch_size]]
+        batch = [data[idx] for idx in indices[i * batch_size : (i + 1) * batch_size]]
         batch = sorted(batch, key=lambda x: len(x[0]), reverse=True)
         sentences = [x[0] for x in batch]
         tags = [x[1] for x in batch]
@@ -35,24 +35,34 @@ def count_matching(list1, list2):
 
 def plot_confusion_matrix(confusion_matrix, labels, plot_name):
     fig, ax = plt.subplots()
-    im = ax.imshow(confusion_matrix, cmap='Blues')
+    im = ax.imshow(confusion_matrix, cmap="Blues")
 
     # 添加颜色条
     cbar = ax.figure.colorbar(im, ax=ax)
 
     # 设置坐标轴标签
-    ax.set(xticks=np.arange(confusion_matrix.shape[1]),
-           yticks=np.arange(confusion_matrix.shape[0]),
-           xticklabels=labels, yticklabels=labels,
-           xlabel='Predicted label', ylabel='Actual label')
+    ax.set(
+        xticks=np.arange(confusion_matrix.shape[1]),
+        yticks=np.arange(confusion_matrix.shape[0]),
+        xticklabels=labels,
+        yticklabels=labels,
+        xlabel="Predicted label",
+        ylabel="Actual label",
+    )
 
     # 在格子中显示数值
-    thresh = confusion_matrix.max() / 2.
+    thresh = confusion_matrix.max() / 2.0
     for i in range(confusion_matrix.shape[0]):
         for j in range(confusion_matrix.shape[1]):
-            ax.text(j, i, format(confusion_matrix[i, j], '.2f'),
-                    ha="center", va="center",
-                    color="white" if confusion_matrix[i, j] > thresh else "black", fontsize=6)
+            ax.text(
+                j,
+                i,
+                format(confusion_matrix[i, j], ".2f"),
+                ha="center",
+                va="center",
+                color="white" if confusion_matrix[i, j] > thresh else "black",
+                fontsize=6,
+            )
 
     # 设置图像标题
     ax.set_title(plot_name)
@@ -60,7 +70,7 @@ def plot_confusion_matrix(confusion_matrix, labels, plot_name):
     plt.xticks(rotation=45)
     plt.yticks(rotation=0)
     plt.tight_layout()
-    plt.savefig(plot_name + '.png')
+    plt.savefig(plot_name + ".png")
 
 
 def compute_confusion_matrix(actual_labels, predicted_labels, num_classes):
@@ -74,23 +84,25 @@ def compute_confusion_matrix(actual_labels, predicted_labels, num_classes):
 
 def show_confusion_matrix(true_path, pred_path, num_classes, tag_mapping, plot_name):
     df_true = pd.read_csv(true_path)
-    true_labels = df_true['expected'].to_list()
+    true_labels = df_true["expected"].to_list()
     true_labels = tag_mapping.encode(true_labels)
     df_pred = pd.read_csv(pred_path)
-    predicted_labels = df_pred['expected'].to_list()
+    predicted_labels = df_pred["expected"].to_list()
     predicted_labels = tag_mapping.encode(predicted_labels)
-    confusion_matrix = compute_confusion_matrix(true_labels, predicted_labels, num_classes)
+    confusion_matrix = compute_confusion_matrix(
+        true_labels, predicted_labels, num_classes
+    )
     plot_confusion_matrix(confusion_matrix, range(num_classes), plot_name)
 
 
 # 绘制train_losses和valid_losses曲线图并保存
 def plot_losses(train_losses, valid_losses, plot_name):
-    plt.plot(train_losses, label='train loss')
-    plt.plot(valid_losses, label='valid loss')
-    plt.xlabel('Epoch')
-    plt.ylabel('Loss')
+    plt.plot(train_losses, label="train loss")
+    plt.plot(valid_losses, label="valid loss")
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
     plt.legend()
-    plt.savefig(plot_name + '.png')
+    plt.savefig(plot_name + ".png")
 
 
 # 计算在验证集上的loss
